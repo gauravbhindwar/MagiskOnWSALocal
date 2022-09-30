@@ -1,10 +1,12 @@
 # Magisk on WSA (with Google Apps)
 
+:warning: For fork developers: Please detach the fork from [upstream](https://github.com/LSPosed/MagiskOnWSALocal) before building with Actions, Github will count the forked Actions usage to the upstream repository, which means if a forked repository abuses Actions, the repository that gets disabled will be upstream. We are not against forks, but please detach them from our repository. If you do not make changes one day after receiving the detachment request, our organization will ban you.
+
 ## Support for generating from these systems
 
 - Linux (x86_64 or arm64)
 
-    The following dependencies are required: `setools lzip wine patchelf e2fsprogs aria2 python3`
+    The following dependencies are required: `setools lzip wine patchelf e2fsprogs aria2 python3 attr`
 
     The following components need to be installed using `winetricks`: `msxml6`
 
@@ -14,11 +16,22 @@
   - Recommended Use
     - Ubuntu (You can use [WSL2](https://apps.microsoft.com/store/search?publisher=Canonical%20Group%20Limited))
 
-        `run.sh` will handle all dependencies automatically.
-        No need to type any commands.
+        Ready to use right out of the box.
+    - Debian (You can use [WSL2](https://apps.microsoft.com/store/detail/debian/9MSVKQC78PK6))
+
+        Need to add `contrib` sources to the source list to install winetricks.
+
+    - OpenSUSE (You can use [WSL2](https://apps.microsoft.com/store/search?publisher=SUSE))
+
+        Ready to use right out of the box.
+
+    `run.sh` will handle all dependencies automatically.
+
+    No need to type any commands.
   - Other Distributions
 
     Install the dependencies manually.
+
     Use the command-line program `build.sh`.
 
 ## Features
@@ -40,12 +53,11 @@
 
 1. Star (if you like)
 1. Clone the repo to local
-   - If you want to install MindtheGapps, place `MindtheGapps-{arch}.zip` in the `download` folder. {arch} can be `x64` or `arm64`.
    - Run `build.sh --help` to get the usage if you want to use CLI.
 1. Run `scripts/run.sh`
 1. Select the WSA version and its architecture (mostly x64)
 1. Select the version of Magisk
-1. Choose which brand of GApps you want to install (If the package of Mindthegapps does not exist, you will not be asking for this).
+1. Choose which brand of GApps you want to install
    - OpenGApps
 
         Select the [OpenGApps variant](https://github.com/opengapps/opengapps/wiki#variants) you like.
@@ -55,7 +67,7 @@
 1. Select the root solution (none means no root)
 1. Wait for the script to complete and the artifact will be in the `output` folder
 1. Move the artifact to a place you like
-1. Right-click `Install.ps1` and select `Run with PowerShell`
+1. Double-click `Run.bat`
     - If you previously have a MagiskOnWSA installation, it will automatically uninstall the previous one while **preserving all user data** and install the new one, so don't worry about your data.
     - If you have an official WSA installation, you should uninstall it first. (In case you want to preserve your data, you can backup `%LOCALAPPDATA%\Packages\MicrosoftCorporationII.WindowsSubsystemForAndroid_8wekyb3d8bbwe\LocalCache\userdata.vhdx` before uninstallation and restore it after installation.) (If you want to restore the icons to the start menu, please install and use [WSAHelper](https://github.com/LSPosed/WSAHelper/releases/latest).)
     - If the popup windows disappear **without asking administrative permission** and WSA is not installed successfully, you should manually run `Install.ps1` as administrator:
@@ -102,9 +114,9 @@
 - How can I get rid of Magisk?
 
     Choose `none` as the root solution.
-- How to install custom OpenGApps?
+- How to install custom GApps?
 
-    [Tutorial](./Custom-OpenGApps.md)
+    [Tutorial](./Custom-GApps.md)
 - Where can I download MindtheGapps?
 
     You can download from here [MindtheGapps](https://androidfilehost.com/?w=files&flid=322935) ([mirror](http://downloads.codefi.re/jdcteam/javelinanddart/gapps))
